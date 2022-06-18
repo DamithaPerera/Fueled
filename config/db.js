@@ -1,4 +1,4 @@
-const { Client } = require('pg')
+const {Client} = require('pg')
 require('dotenv').config()
 
 
@@ -10,4 +10,8 @@ const dbConnection = new Client({
     password: process.env.DB_PASSWORD,
 })
 
-export default dbConnection
+dbConnection.connect();
+
+module.exports = {
+    query: (text, params) => dbConnection.query(text, params),
+}
