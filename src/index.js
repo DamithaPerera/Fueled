@@ -1,17 +1,38 @@
 const express = require('express');
+const { ApolloServer, gql } = require('apollo-server-express');
 const cors = require('cors');
-const app = express();
 
 const port = 3000;
 
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({extended: false}));
 
+// The GraphQL schema
+const typeDefs = gql`
+    type Query {
+        "A simple type for getting started!"
+        hello: String
+    }
+`;
+
+// A map of functions which return data for the schema.
+const resolvers = {
+    Query: {
+        hello: () => 'world',
+    },
+};
+
+const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+});
+
+const app = express();
+app.use(cors());
+
+server.applyMiddleware({ app });
 
 
 app.listen(port, () => {
-    console.log(`⚡️[server]: Server is running at https://localhost:${port}`);
+    console.log(`🚀 Server ready at http://localhost:3000${server.graphqlPath}`);
 });
 
 module.exports = app;
