@@ -1,6 +1,8 @@
 const express = require('express');
 const { ApolloServer, gql } = require('apollo-server-express');
 const cors = require('cors');
+const dbConnection = require('../config/db');
+
 const port = 3000;
 
 
@@ -27,6 +29,7 @@ const server = new ApolloServer({
 const app = express();
 app.use(cors());
 
+dbConnection.connect()
 
 
 server.applyMiddleware({ app });

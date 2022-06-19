@@ -1,17 +1,21 @@
 const {Client} = require('pg')
-require('dotenv').config()
+require('dotenv').config();
 
 
 const dbConnection = new Client({
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    database: process.env.DB_DATABASE,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
+    // ssl: false,
+    user: 'postgres',
+    host: '127.0.0.1',
+    database: 'fueled',
+    password: '123',
+    port: 5432,
 })
+// DATABASE_URL=postgres://postgres:123@127.0.0.1:5432/fueled
+// dbConnection.connect();
 
-dbConnection.connect();
+// module.exports = {
+//     query: (text, params) => dbConnection.query(text, params),
+// }
+console.log('DB connected')
 
-module.exports = {
-    query: (text, params) => dbConnection.query(text, params),
-}
+module.exports = dbConnection;
