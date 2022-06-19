@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate": "node-pg-migrate up",
+    "knex": "knex",
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },
@@ -24,7 +24,8 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "node-pg-migrate": "^6.2.1",
+    "graphql": "^15.8.0",
+    "knex": "^2.0.0",
     "pg": "^8.7.3"
   },
   "devDependencies": {
